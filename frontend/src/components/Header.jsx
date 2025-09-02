@@ -2,7 +2,7 @@ import "../style/header.css";
 import { useState } from "react";
 import Buttons from "./headerComponents/Buttons";
 import User from "../assets/user.png";
-import Cross from "../assets/cross.png"
+import Cross from "../assets/cross.png";
 
 export default function Header() {
   const [isActive, setIsActive] = useState("home");
@@ -38,12 +38,20 @@ export default function Header() {
       <div className="section-for-user">
         <div className={open ? "user-wrapper-open" : "user-wrapper"}>
           <div className="photo-wrapper">
-            <img src={!open ? User : Cross} alt="user accaunt" onClick={handleUser} />
+            <img
+              src={!open ? User : Cross}
+              alt="user accaunt"
+              onClick={handleUser}
+            />
           </div>
 
           {open && (
             <div className="user-popup">
-              <input type="text" placeholder="Type here..." />
+              <input type="text" placeholder="Enter your name" />
+              <input type="password" placeholder="Enter your password" />
+              <div className="for-button">
+                <button type="submit">Send</button>
+              </div>
             </div>
           )}
         </div>

@@ -74,7 +74,7 @@ nav {
 .user-wrapper-open {
     background-color: white;
     width: 200px;
-    height: 200px;
+    height: 250px;
     border-radius: 10px;
     margin-top: 20px;
     top: 0;
@@ -83,5 +83,27 @@ nav {
 .user-wrapper-open img {
     margin: 10px;
     width: 15%;
+    cursor: pointer;
+}
+
+input {
+    width: 80%;
+    margin: 20px;
+    border-radius: 10px;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
+.for-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.for-button button {
+    width: 100px;
+    height: 30px;
+    border-radius: 50px;
+    background-color: rgb(31, 210, 31);
     cursor: pointer;
 }
