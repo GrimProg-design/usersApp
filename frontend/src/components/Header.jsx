@@ -1,6 +1,7 @@
 import "../style/header.css";
 import { useState } from "react";
 import Buttons from "./headerComponents/Buttons";
+import User from "../assets/user.png";
 
 export default function Header() {
   const [isActive, setIsActive] = useState("home");
@@ -11,7 +12,9 @@ export default function Header() {
 
   return (
     <div className="header-wrapper">
-      <h2>My Web-Site</h2>
+      <div className="name-wrapper">
+        <h2>My Web-Site</h2>
+      </div>
       <nav>
         <Buttons
           value="Home"
@@ -26,6 +29,11 @@ export default function Header() {
           onClick={() => handleClick("more")}
         />
       </nav>
+      <div className="section-for-user">
+        <div className="user-wrapper">
+          <img src={User} alt="user accaunt" />
+        </div>
+      </div>
     </div>
   );
 }
