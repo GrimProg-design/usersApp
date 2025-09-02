@@ -7,6 +7,8 @@ import Cross from "../assets/cross.png";
 export default function Header() {
   const [isActive, setIsActive] = useState("home");
   const [open, setOpen] = useState(false);
+  const [name, setName] = useState("");
+  const [password, setPassword] = useState("")
 
   function handleClick(page) {
     setIsActive(page);
@@ -14,6 +16,16 @@ export default function Header() {
 
   function handleUser() {
     setOpen(!open);
+  }
+
+  function handleSubmit(e) {
+    e.preventDefault();
+
+    fetch("api/user", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ name: name, password: password }),
+    });
   }
 
   return (
@@ -47,11 +59,21 @@ export default function Header() {
 
           {open && (
             <div className="user-popup">
-              <input type="text" placeholder="Enter your name" />
-              <input type="password" placeholder="Enter your password" />
-              <div className="for-button">
-                <button type="submit">Send</button>
-              </div>
+              <form onSubmit={(e) => handleSubmit(e)}>
+                <input
+                  type="text"
+                  placeholder="Enter your name"
+                  onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                  type="password"
+                  placeholder="Enter your password"
+                  onChange={(e) => setPassword(e.target.value)}
+                />
+                <div className="for-button">
+                  <button type="submit">Send</button>
+                </div>
+              </form>
             </div>
           )}
         </div>
