@@ -2,12 +2,18 @@ import "../style/header.css";
 import { useState } from "react";
 import Buttons from "./headerComponents/Buttons";
 import User from "../assets/user.png";
+import Cross from "../assets/cross.png"
 
 export default function Header() {
   const [isActive, setIsActive] = useState("home");
+  const [open, setOpen] = useState(false);
 
   function handleClick(page) {
     setIsActive(page);
+  }
+
+  function handleUser() {
+    setOpen(!open);
   }
 
   return (
@@ -30,8 +36,16 @@ export default function Header() {
         />
       </nav>
       <div className="section-for-user">
-        <div className="user-wrapper">
-          <img src={User} alt="user accaunt" />
+        <div className={open ? "user-wrapper-open" : "user-wrapper"}>
+          <div className="photo-wrapper">
+            <img src={!open ? User : Cross} alt="user accaunt" onClick={handleUser} />
+          </div>
+
+          {open && (
+            <div className="user-popup">
+              <input type="text" placeholder="Type here..." />
+            </div>
+          )}
         </div>
       </div>
     </div>
