@@ -1,6 +1,7 @@
 import "./App.css";
 import { Routes, Route, Navigate } from "react-router-dom";
-import Home from "./components/Home";
+import Home from "./components/mainComponents/Home";
+import More from "./components/mainComponents/More";
 import Layout from "./components/Layout";
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
       <Route element={<Layout/>}>
         <Route path="/" element={<Navigate to="/home" />} />
         <Route path="/home" element={<Home />} />
+        <Route path="/more" element={<More />}/>
       </Route>
     </Routes>
   );
