@@ -1,0 +1,8 @@
+.header-wrapper {
+    display: flex;
+    align-items: center;
+    height: 100px;
+    min-height: 100px;
+    background-color: rgb(108, 252, 252);
+    margin: 0;
+}
