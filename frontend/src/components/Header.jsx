@@ -24,18 +24,25 @@ export default function Header() {
     try {
       const res = await fetch("/api/user", {
         method: "POST",
-        headers: {"Content-Type": "application/json"},
-        body: JSON.stringify({name, password})
-      })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name, password }),
+      });
 
-      if(!res.ok) {
-        throw new Error(`Ups it seems we got some problem with server ${res.status}`)
+      if (!res.ok) {
+        switch (res.status) {
+          case 500:
+            throw new Error(`Server doesnt work: ${res.status}`);
+          case 404:
+            throw new Error(`Page not found: ${res.status}`)
+          default:
+            throw new Error("Unknown error");
+        }
       }
 
-      const data = await res.json()
-      console.log(data)
+      const data = await res.json();
+      console.log(data);
     } catch (err) {
-      alert("Error status: ", err)
+      alert(`it seems we got some problem: ${err.message}`);
     }
   }
 
