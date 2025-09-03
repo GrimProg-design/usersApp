@@ -8,7 +8,7 @@ export default function Header() {
   const [isActive, setIsActive] = useState("home");
   const [open, setOpen] = useState(false);
   const [name, setName] = useState("");
-  const [password, setPassword] = useState("")
+  const [password, setPassword] = useState("");
 
   function handleClick(page) {
     setIsActive(page);
@@ -18,14 +18,25 @@ export default function Header() {
     setOpen(!open);
   }
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
 
-    fetch("api/user", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ name: name, password: password }),
-    });
+    try {
+      const res = await fetch("/api/user", {
+        method: "POST",
+        headers: {"Content-Type": "application/json"},
+        body: JSON.stringify({name, password})
+      })
+
+      if(!res.ok) {
+        throw new Error(`Ups it seems we got some problem with server ${res.status}`)
+      }
+
+      const data = await res.json()
+      console.log(data)
+    } catch (err) {
+      alert("Error status: ", err)
+    }
   }
 
   return (
