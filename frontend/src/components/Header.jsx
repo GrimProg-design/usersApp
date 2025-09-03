@@ -3,6 +3,7 @@ import { useState } from "react";
 import Buttons from "./headerComponents/Buttons";
 import User from "../assets/user.png";
 import Cross from "../assets/cross.png";
+import { toast } from "react-toastify";
 
 export default function Header() {
   const [isActive, setIsActive] = useState("home");
@@ -40,7 +41,7 @@ export default function Header() {
       }
 
       const data = await res.json();
-      console.log(data);
+      toast.success(data.message || "Все прошло успешно")
     } catch (err) {
       alert(`it seems we got some problem: ${err.message}`);
     }
